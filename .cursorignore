@@ -1,5 +1,5 @@
 # spawn:start
-!spawn/navigation.yaml
-!spawn/rules/**
-spawn/**
+spawn/.core/**
+spawn/.extend/**
+spawn/.metadata/**
 # spawn:end
