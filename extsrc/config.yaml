@@ -1,12 +1,16 @@
 schema: 1
 name: my-develop
-version: "0.1.1"
+version: "0.1.2"
+hints:
+  global:
+    - "Chat: Russian. Specs, comments, logs, strings in code: English. ASCII in code/logs/docs when practical."
+    - "If the user only asked a question, answer first; do not edit files unless changes are clearly needed."
 folders:
   spec/extend:
     mode: static
 files:
   spec/extend/00-general.md:
-    description: "ASCII, workflow, RU/EN, docs, builds, change recap."
+    description: "ASCII/unicode, docs/comments/logs policy, builds, change recap."
     mode: static
     globalRead: required
     localRead: no
