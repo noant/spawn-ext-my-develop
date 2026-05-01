@@ -1,0 +1,5 @@
+# spawn:start
+!spawn/navigation.yaml
+!spawn/rules/**
+spawn/**
+# spawn:end

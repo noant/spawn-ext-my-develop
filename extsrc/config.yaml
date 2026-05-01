@@ -1,0 +1,41 @@
+schema: 1
+name: spectask-my-extend
+version: "0.1.1"
+folders:
+  spec/extend:
+    mode: static
+files:
+  spec/extend/00-general.md:
+    description: "ASCII, workflow, RU/EN, docs, builds, change recap."
+    mode: static
+    globalRead: required
+    localRead: no
+  spec/extend/01-csharp-style.md:
+    description: "Fluent, DI, CPM, errors, C# for automation."
+    mode: static
+    globalRead: auto
+    localRead: no
+  spec/extend/02-csharp-solution-layout.md:
+    description: "Layout, registrars, DI."
+    mode: static
+    globalRead: auto
+    localRead: no
+  spec/extend/03-entity-framework-core.md:
+    description: "EF Core migrations (dotnet ef)."
+    mode: static
+    globalRead: auto
+    localRead: no
+  spec/extend/04-http-httclient.md:
+    description: "IHttpClientFactory / HttpClient."
+    mode: static
+    globalRead: auto
+    localRead: no
+  spec/extend/05-tools-mcp.md:
+    description: "Context7 MCP."
+    mode: static
+    globalRead: required
+    localRead: no
+skills: {}
+setup: {}
+agent-ignore: []
+git-ignore: []
