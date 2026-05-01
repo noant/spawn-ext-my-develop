@@ -1,8 +1,5 @@
 # General (language-agnostic)
 
-### Character set (code, logs, documentation, messages)
-- Do not use emojis or unusual/exotic Unicode characters in code, logs, documentation, or messages (stick to plain ASCII where practical).
-
 ### Documentation, comments, and logs
 - Keep information concise in both chat and documentation, but do not omit important points when describing.
 - Do not create or update documentation files (README, USAGE, etc.) unless explicitly requested.
