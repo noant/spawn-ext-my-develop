@@ -1,0 +1,32 @@
+{
+  "servers": [
+    {
+      "name": "spawn-open-websearch",
+      "transport": {
+        "type": "stdio",
+        "command": "npx",
+        "args": ["-y", "open-websearch@latest"],
+        "cwd": "."
+      },
+      "env": {
+        "MODE": {
+          "source": "extension",
+          "required": false,
+          "secret": false,
+          "value": "stdio"
+        },
+        "DEFAULT_SEARCH_ENGINE": {
+          "source": "extension",
+          "required": false,
+          "secret": false,
+          "value": "duckduckgo"
+        }
+      },
+      "capabilities": {
+        "tools": true,
+        "resources": false,
+        "prompts": false
+      }
+    }
+  ]
+}
