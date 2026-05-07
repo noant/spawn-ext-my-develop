@@ -5,6 +5,7 @@ hints:
   global:
     - "Chat: Russian. Specs, comments, logs, strings in code: English. ASCII in code/logs/docs when practical."
     - "No emojis or exotic Unicode in code, logs, documentation, or messages; plain ASCII where practical."
+    - "User-facing replies, documentation, and task descriptions: concise wording; minimal markdown (avoid decorative bold/italic); explain with lists and structure; short, clear sentences."
     - "If the user only asked a question, answer first; do not edit files unless changes are clearly needed."
 folders:
   spec/extend:
