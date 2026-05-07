@@ -1,6 +1,6 @@
 schema: 1
 name: my-develop
-version: "0.1.4"
+version: "0.1.5"
 hints:
   global:
     - "Chat: Russian. Specs, comments, logs, strings in code: English. ASCII in code/logs/docs when practical."
