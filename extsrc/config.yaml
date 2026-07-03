@@ -105,18 +105,6 @@ files:
     globalRead: auto
     localRead: no
 
-  spec/extend/15-cli-client-strategies.md:
-    description: "CLI hosts, client libraries, strategy variants, in-process jobs."
-    mode: static
-    globalRead: auto
-    localRead: no
-
-  spec/extend/16-desktop-launcher-packaging.md:
-    description: "Desktop launcher host, platform adapters, Builder packaging CLI."
-    mode: static
-    globalRead: auto
-    localRead: no
-
 skills:
   new-abstractions-project.md:
     name: new-abstractions-project
@@ -167,37 +155,6 @@ skills:
       - spec/extend/11-frontend-solution-layout.md
       - spec/extend/12-frontend-data-state-routing.md
       - spec/extend/13-frontend-ui-forms-i18n.md
-
-  new-strategy-variant.md:
-    name: new-strategy-variant
-    description: "Scaffold pluggable strategy variant with jobs and executors."
-    required-read:
-      - spec/extend/02-csharp-solution-layout.md
-      - spec/extend/10-implementation-projects.md
-      - spec/extend/15-cli-client-strategies.md
-
-  new-cli-entry-command.md:
-    name: new-cli-entry-command
-    description: "Add CLI command with DI composition chain."
-    required-read:
-      - spec/extend/02-csharp-solution-layout.md
-      - spec/extend/07-di-registration.md
-      - spec/extend/15-cli-client-strategies.md
-
-  new-platform-adapter.md:
-    name: new-platform-adapter
-    description: "Scaffold desktop platform adapter project."
-    required-read:
-      - spec/extend/02-csharp-solution-layout.md
-      - spec/extend/06-abstractions-layer.md
-      - spec/extend/16-desktop-launcher-packaging.md
-
-  new-packaging-builder.md:
-    name: new-packaging-builder
-    description: "Scaffold packaging Builder CLI for desktop distributions."
-    required-read:
-      - spec/extend/16-desktop-launcher-packaging.md
-      - spec/extend/02-csharp-solution-layout.md
 
 setup: {}
 
