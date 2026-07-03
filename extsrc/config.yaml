@@ -1,47 +1,206 @@
 schema: 1
-name: my-develop
-version: "0.1.5"
+
+version: "0.3.1"
+
 hints:
   global:
     - "Chat: Russian. Specs, comments, logs, strings in code: English. ASCII in code/logs/docs when practical."
     - "No emojis or exotic Unicode in code, logs, documentation, or messages; plain ASCII where practical."
     - "User-facing replies, documentation, and task descriptions: concise wording; minimal markdown (avoid decorative bold/italic); explain with lists and structure; short, clear sentences."
     - "If the user only asked a question, answer first; do not edit files unless changes are clearly needed."
+
 folders:
   spec/extend:
+    description: "C# / .NET and React/Vite frontend stack conventions — layout, abstractions, DI, WebApi, workers, EF Core, SPA."
     mode: static
+
 files:
   spec/extend/00-general.md:
     description: "Docs/comments/logs policy, builds, change recap."
     mode: static
     globalRead: required
     localRead: no
+
   spec/extend/01-csharp-style.md:
-    description: "Fluent, DI, CPM, errors, C# for automation."
+    description: "Fluent style, DI, immutability, naming, CPM, errors, async/cancellation."
     mode: static
     globalRead: auto
     localRead: no
+
   spec/extend/02-csharp-solution-layout.md:
-    description: "Layout, registrars, DI."
+    description: "Solution layout, project roles, optional registrars, registration signatures."
     mode: static
     globalRead: auto
     localRead: no
+
   spec/extend/03-entity-framework-core.md:
-    description: "EF Core migrations (dotnet ef)."
+    description: "EF Core layout, DbContext, factory registration, migrations, domain stores."
     mode: static
     globalRead: auto
     localRead: no
+
   spec/extend/04-http-httclient.md:
-    description: "IHttpClientFactory / HttpClient."
+    description: "IHttpClientFactory and HttpClient usage."
     mode: static
     globalRead: auto
     localRead: no
+
   spec/extend/05-tools-mcp.md:
     description: "Context7 MCP."
     mode: static
     globalRead: required
     localRead: no
-skills: {}
+
+  spec/extend/06-abstractions-layer.md:
+    description: "Abstractions layout, contracts, naming."
+    mode: static
+    globalRead: auto
+    localRead: no
+
+  spec/extend/07-di-registration.md:
+    description: "DI extensions, options, keyed services, lifetimes."
+    mode: static
+    globalRead: auto
+    localRead: no
+
+  spec/extend/08-webapi-minimal.md:
+    description: "Minimal APIs, auth, SignalR, route groups, DTOs."
+    mode: static
+    globalRead: auto
+    localRead: no
+
+  spec/extend/09-processors-workers-jobs.md:
+    description: "Processor, Worker, Jobs patterns."
+    mode: static
+    globalRead: auto
+    localRead: no
+
+  spec/extend/10-implementation-projects.md:
+    description: "Impl project naming, layout, registration."
+    mode: static
+    globalRead: auto
+    localRead: no
+
+  spec/extend/11-frontend-solution-layout.md:
+    description: "Frontend SPA layout — app/features/shared, naming, dependencies."
+    mode: static
+    globalRead: auto
+    localRead: no
+
+  spec/extend/12-frontend-data-state-routing.md:
+    description: "React Query, Zustand, HTTP, auth, routing, SignalR."
+    mode: static
+    globalRead: auto
+    localRead: no
+
+  spec/extend/13-frontend-ui-forms-i18n.md:
+    description: "shadcn/ui, Tailwind, forms, resizable layout, i18n."
+    mode: static
+    globalRead: auto
+    localRead: no
+
+  spec/extend/14-frontend-tooling.md:
+    description: "Vite, Vitest, ESLint, env, Docker/nginx SPA deploy."
+    mode: static
+    globalRead: auto
+    localRead: no
+
+  spec/extend/15-cli-client-strategies.md:
+    description: "CLI hosts, client libraries, strategy variants, in-process jobs."
+    mode: static
+    globalRead: auto
+    localRead: no
+
+  spec/extend/16-desktop-launcher-packaging.md:
+    description: "Desktop launcher host, platform adapters, Builder packaging CLI."
+    mode: static
+    globalRead: auto
+    localRead: no
+
+skills:
+  new-abstractions-project.md:
+    name: new-abstractions-project
+    description: "Scaffold Abstractions project."
+    required-read:
+      - spec/extend/02-csharp-solution-layout.md
+      - spec/extend/06-abstractions-layer.md
+
+  new-service-registration.md:
+    name: new-service-registration
+    description: "Add DI extension with options and keyed services."
+    required-read:
+      - spec/extend/07-di-registration.md
+      - spec/extend/10-implementation-projects.md
+
+  new-postgres-persistence.md:
+    name: new-postgres-persistence
+    description: "Add EF PostgreSQL module with auto-migrations."
+    required-read:
+      - spec/extend/03-entity-framework-core.md
+      - spec/extend/07-di-registration.md
+
+  new-webapi-endpoints.md:
+    name: new-webapi-endpoints
+    description: "Add Minimal API endpoint group."
+    required-read:
+      - spec/extend/08-webapi-minimal.md
+
+  new-processor-or-worker.md:
+    name: new-processor-or-worker
+    description: "Add Processor, Worker, or Job handler."
+    required-read:
+      - spec/extend/09-processors-workers-jobs.md
+      - spec/extend/07-di-registration.md
+
+  new-implementation-project.md:
+    name: new-implementation-project
+    description: "Scaffold technology-specific implementation."
+    required-read:
+      - spec/extend/10-implementation-projects.md
+      - spec/extend/06-abstractions-layer.md
+      - spec/extend/07-di-registration.md
+
+  new-frontend-feature.md:
+    name: new-frontend-feature
+    description: "Scaffold frontend feature slice with API, store, and page."
+    required-read:
+      - spec/extend/11-frontend-solution-layout.md
+      - spec/extend/12-frontend-data-state-routing.md
+      - spec/extend/13-frontend-ui-forms-i18n.md
+
+  new-strategy-variant.md:
+    name: new-strategy-variant
+    description: "Scaffold pluggable strategy variant with jobs and executors."
+    required-read:
+      - spec/extend/02-csharp-solution-layout.md
+      - spec/extend/10-implementation-projects.md
+      - spec/extend/15-cli-client-strategies.md
+
+  new-cli-entry-command.md:
+    name: new-cli-entry-command
+    description: "Add CLI command with DI composition chain."
+    required-read:
+      - spec/extend/02-csharp-solution-layout.md
+      - spec/extend/07-di-registration.md
+      - spec/extend/15-cli-client-strategies.md
+
+  new-platform-adapter.md:
+    name: new-platform-adapter
+    description: "Scaffold desktop platform adapter project."
+    required-read:
+      - spec/extend/02-csharp-solution-layout.md
+      - spec/extend/06-abstractions-layer.md
+      - spec/extend/16-desktop-launcher-packaging.md
+
+  new-packaging-builder.md:
+    name: new-packaging-builder
+    description: "Scaffold packaging Builder CLI for desktop distributions."
+    required-read:
+      - spec/extend/16-desktop-launcher-packaging.md
+      - spec/extend/02-csharp-solution-layout.md
+
 setup: {}
+
 agent-ignore: []
+
 git-ignore: []

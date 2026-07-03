@@ -1,10 +1,10 @@
 # General (language-agnostic)
 
 ### Documentation, comments, and logs
-- Keep information concise in both chat and documentation, but do not omit important points when describing.
-- Do not create or update documentation files (README, USAGE, etc.) unless explicitly requested.
-- Write comments, documentation text, log messages, and any text inside code blocks only when explicitly requested.
+- Be concise; do not omit important points.
+- Do not create or update docs (README, USAGE, etc.) unless requested.
+- Write comments, log messages, and in-code text only when requested.
 
-### No automatic build/run; concise change recap
-- Do not build, run, or "verify by compiling" after making changes unless the user explicitly asks for it.
-- After code changes are made, summarize the final changes in chat very concisely (what changed and where), without extra narration.
+### Build/run and change recap
+- Do not build, run, or verify by compiling unless asked.
+- After code changes, summarize briefly what changed and where.
