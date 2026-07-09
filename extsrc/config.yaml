@@ -1,6 +1,6 @@
 schema: 1
 
-version: "0.3.1"
+version: "0.4.0"
 
 hints:
   global:
@@ -104,6 +104,18 @@ files:
     mode: static
     globalRead: auto
     localRead: no
+  spec/extend/15-domain-errors-localization.md:
+    description: "Domain exception with UserMessageCode, parameters, 422 mapping."
+    mode: static
+    globalRead: auto
+    localRead: no
+
+  spec/extend/16-frontend-domain-errors.md:
+    description: "Frontend 422 parsing, ApiDomainError, i18n localized messages."
+    mode: static
+    globalRead: auto
+    localRead: no
+
 
 skills:
   new-abstractions-project.md:
