@@ -18,3 +18,5 @@ extensions:
     path: .cursor/skills/spawn-ext-verify/SKILL.md
   - skill: spawn-methodology-shape
     path: .cursor/skills/spawn-methodology-shape/SKILL.md
+  - skill: spawn-methodology-update
+    path: .cursor/skills/spawn-methodology-update/SKILL.md
