@@ -19,5 +19,5 @@
 - Each impl project still owns its `{Feature}ServiceCollectionExtensions`.
 
 ### Registration signature
-- `Add{Capability}(this IServiceCollection services, IConfiguration configuration, string configurationSectionName = default, string serviceKey = default)` — default key is `"default"`.
-- Pre-resolved subtree: `Add{Capability}(this IServiceCollection services, IConfiguration configSection)`.
+- `Add{Capability}(this IServiceCollection services, IConfiguration configurationSection, ...)` — pass a pre-resolved section; optional params after (e.g. `serviceKey = "default"`).
+- Do not pass a separate section name string; resolve the section at the call site.

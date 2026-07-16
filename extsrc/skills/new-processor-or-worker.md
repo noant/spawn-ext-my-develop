@@ -8,4 +8,4 @@ description: Add Processor, Worker, or Job handler.
 3. **Worker:** `{Feature}.Worker` — polling base, `IterationAsync` -> processor; `AddHostedService`.
 4. **Job handler:** `{Feature}Workers.{HandlerName}` — `{WorkItem}Job` + `IJobHandler<{WorkItem}Job>`; scoped handler + `AddJobWorker<TPayload>(section)`.
 5. Scopes per iteration for scoped/keyed services; keyed resolution for multi-instance domains.
-6. Expose `Add{Feature}(IConfiguration, ...)`; chain in entry point.
+6. Expose `Add{Feature}(IConfiguration configurationSection, ...)`; no separate section name; chain in entry point.

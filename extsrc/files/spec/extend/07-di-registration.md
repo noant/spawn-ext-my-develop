@@ -5,11 +5,12 @@
 - Methods: `Add{Provider|Persistence|Worker}(...)`; return `IServiceCollection` for chaining.
 
 ### Signatures and options
-- `(IServiceCollection, IConfiguration root, string sectionName = "...")` for libraries with a default section name.
-- Pre-resolved `(IServiceCollection, IConfiguration section)` when the entry point chooses the config path (e.g. per-job worker sections).
-- Libraries supply defaults; entry points own config hierarchy. Optional `serviceKey = "default"`; optional worker flags.
-- Options in `Configuration/`; bind with `ValidateDataAnnotations().ValidateOnStart()` or shared `AddValidatedOptions<T>`.
-- Keyed options: named `{sectionName}:{serviceKey}`; nested composite keys: `{RootSection}:{instanceKey}:{SubFeature}`.
+- Library `Add*`: `Add{Dependency}(this IServiceCollection services, IConfiguration configurationSection, ...)`.
+- Second argument is a pre-resolved section (`GetSection(...)`), not the configuration root.
+- Do not accept a separate `sectionName` / `configurationSectionName` string; the caller chooses and passes the section.
+- Optional further params after `configurationSection` (e.g. `serviceKey = "default"`, worker flags).
+- Libraries supply non-config defaults; entry points own config hierarchy. Options in `Configuration/`; bind with `ValidateDataAnnotations().ValidateOnStart()` or shared `AddValidatedOptions<T>`.
+- Keyed options: named `{sectionPath}:{serviceKey}`; nested composite keys: `{RootSection}:{instanceKey}:{SubFeature}`.
 
 ### Keyed services
 - Use when multiple impls of one interface share a host.

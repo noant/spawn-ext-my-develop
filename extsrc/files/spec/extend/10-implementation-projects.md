@@ -16,7 +16,8 @@
 ```
 
 ### Registration
-- One primary `Add{Technology}{Capability}(IServiceCollection, IConfiguration, string sectionName, string serviceKey = "default")`.
+- One primary `Add{Technology}{Capability}(this IServiceCollection services, IConfiguration configurationSection, ...)` (optional `serviceKey = "default"`, flags).
+- Do not accept a separate section name string; the caller passes the section.
 - Validate options on start; Scoped or keyed when multiple instances; early-return if optional config missing.
 - Entry points chain `Add*`; no entry-point or unrelated impl references (except composition bundles).
 

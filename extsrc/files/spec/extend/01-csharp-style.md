@@ -6,9 +6,10 @@
 - Prefer local functions over private class methods when logic is used only inside one method and does not need reuse or testing in isolation.
 
 ### Dependency Injection
-- Prefer DI over `new` for app services; inject via constructors; store deps in `private readonly` fields.
+- Prefer DI over `new` for app services; inject dependencies via primary constructors.
+- Prefer primary constructor syntax in class declarations (including sealed application services); avoid classic ctor + `private readonly` field boilerplate when a primary constructor is enough.
 - Use `new` only for trivial types (DTOs, value objects) or outside the dependency graph.
-- Application services: `sealed class` with constructor injection; public contracts are interfaces with `I` prefix.
+- Application services: `sealed class` with primary constructor injection; public contracts are interfaces with `I` prefix.
 - Multi-implementation: register variants and resolve via selector injected with `IEnumerable<T>`; prefer typed `IHandler<TCommand>` over reflection dispatch.
 - Use `GetRequiredService<T>()` in hosts; avoid `IServiceProvider.GetService` in domain logic.
 

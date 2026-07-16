@@ -25,5 +25,5 @@
 - Startup: reset orphaned `Running` to `Ready`; per-job cancellation tokens; distinguish user cancel from host shutdown.
 
 ### Registration
-- Each layer: `Add{Feature}(IConfiguration, ...)`; entry points chain.
+- Each layer: `Add{Feature}(IConfiguration configurationSection, ...)`; entry points chain. Do not pass a separate section name string.
 - Composite modules bundle source/index/processor/worker behind flags + one config key.
