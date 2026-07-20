@@ -1,4 +1,4 @@
-# C# / .NET — solution layout and registration
+# C# / .NET — solution layout
 
 ### Project structure
 - Flat layout: one folder = one project at solution root; solution name `{Product}.sln`.
@@ -14,10 +14,14 @@
 - `{Product}.{Domain}.Jobs.Abstractions` / `.Persistence.{Provider}` / `.{Runtime}` — job contracts, storage, engine.
 - `{Product}.Shared.{Configuration|Infrastructure|Infrastructure.Ef}` — config merge, DI helpers, EF factory.
 
+### Pluggable tool modules
+- One module per swappable tool; each owns `Extensions/{Tool}ServiceCollectionExtensions.cs` with `Add{Tool}(...)`.
+- Tools depend on abstractions only; no entry-point or persistence references.
+- Router/cache invalidation lives in a dedicated tool module; entry points register tools via chained `Add*`.
+
 ### Registrar (`*.Registrar`) — optional, rarely used
 - May aggregate `Add*` chains for reuse; most solutions compose DI directly in entry-point `Program.cs`.
 - Each impl project still owns its `{Feature}ServiceCollectionExtensions`.
 
-### Registration signature
-- `Add{Capability}(this IServiceCollection services, IConfiguration configurationSection, ...)` — pass a pre-resolved section; optional params after (e.g. `serviceKey = "default"`).
-- Do not pass a separate section name string; resolve the section at the call site.
+### Registration
+- Canon: `07-di-registration.md` — `Add{Capability}(this IServiceCollection, IConfiguration configurationSection, ...)`.

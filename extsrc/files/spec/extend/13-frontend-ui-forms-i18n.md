@@ -1,10 +1,5 @@
 # Frontend — UI, forms, layout, and i18n
 
-### Feature-sliced UI
-- Put route screens, feature components, API modules, and feature stores under `src/features/{Feature}/`.
-- Do not use top-level `components/` or `pages/` folders when this layout is adopted.
-- Keep `src/app/` thin: providers, routing, auth gate, and persistent layout chrome only.
-
 ### Design system
 - Install shadcn/ui into `shared/ui`; configure `components.json` aliases to point at `shared/`.
 - Extend primitives there (pane header bar, pane tab variants) rather than forking per feature.
@@ -15,6 +10,7 @@
 - Standardize on react-hook-form + Zod + shadcn Form.
 - Colocate schema with the form; use `FormField` render props.
 - Map API DTOs with explicit `toFormValues` / `toPayload` helpers when wire and UI shapes differ.
+- Login and edit forms: submit handlers call feature API functions, not raw HTTP.
 
 ### IDE-style layouts
 - Shell = column (top bar → horizontal resizable `PanelGroup` → status bar).

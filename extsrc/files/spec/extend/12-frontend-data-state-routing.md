@@ -7,7 +7,7 @@
 - Refresh/login calls that rely on cookies use `withCredentials: true` on a dedicated refresh URL.
 
 ### Feature API modules
-- Each feature owns `features/{Feature}/api.ts`: async functions only, no React.
+- Each feature owns `features/{feature}/api.ts`: async functions only, no React.
 - Map wire DTOs ↔ UI models in the API module; UI and hooks consume UI shapes only.
 - Export `{feature}QueryKeys` from the same file; keys are hierarchical tuples (`["domain", "list", params]`, `["domain", "item", id]`).
 
@@ -24,10 +24,10 @@
 
 ### Auth boundary
 - Guard protected routes with a gate component that: loads persisted token, falls back to cookie refresh bootstrap, shows loading, redirects anonymous users to login with return path.
+- Place login outside the authenticated tree.
 - Centralize logout in `performSessionEnd`: API logout (best-effort) → clear auth store/storage → stop realtime connection → reset listener registration flags → navigate to login.
 
 ### Routing
-- Define routes in `app/routes.tsx` with `createBrowserRouter`; mount via `RouterProvider` inside app providers.
 - Structure: public login route; authenticated routes nested under gate + shell layout with `<Outlet />`.
 - Use routes for major navigation; use Zustand for dense in-app state (editor tabs). If a URL param exists, keep it in sync with store or remove the param.
 
@@ -37,9 +37,9 @@
 - Realtime events update React Query cache (`setQueryData` / `invalidateQueries`); push transient UI signals to Zustand.
 
 ### Feature hooks
-- Extract repeated query+mutation+side-effect logic into `features/{Feature}/hooks/use*.ts` (debounced autosave, dirty tracking, rollback on error).
+- Extract repeated query+mutation+side-effect logic into `features/{feature}/hooks/use*.ts` (debounced autosave, dirty tracking, rollback on error).
 - Hooks may read/write feature stores for dirty/tab state but delegate persistence to API functions and cache updates to React Query.
 
-### Errors and forms
+### Errors
 - Normalize unknown errors through `toApiError()` in `shared/api/errors.ts`; surface messages via toast or form error state.
-- Login and edit forms: Zod schema + react-hook-form resolver; submit handlers call feature API functions, not raw HTTP.
+- Domain 422 handling: see `16-frontend-domain-errors.md`.

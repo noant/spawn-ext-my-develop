@@ -9,20 +9,18 @@
 ### Application shell (`app/`)
 - Bootstrap in `src/main.tsx`: mount providers, then `RouterProvider`.
 - Define all routes in `app/routes.tsx` using `createBrowserRouter`.
-- Wrap authenticated routes with an auth gate; place login outside the authenticated tree.
 - Compose global providers in `app/providers.tsx` (query client, theme, toasts, i18n init).
 - App chrome lives in `app/layout/`; route content renders via `<Outlet />`.
+- Keep `app/` thin: providers, routing, auth gate, and persistent layout chrome only. No top-level `components/` or `pages/` folders.
 
 ### Feature slices (`features/{feature}/`)
 - One folder per domain; folder name lowercase (`{feature}`).
 - Each routable domain exports `{Feature}Page.tsx` as the route entry.
-- Colocate feature HTTP in `api.ts`: request functions, `{feature}QueryKeys`, and wire→UI mappers.
-- Colocate feature client state in `{feature}Store.ts` using Zustand; export `use{Feature}Store`.
-- Optional real-time wiring in `signalr.ts` registers listeners on the shared hub connection.
+- Colocate feature HTTP in `api.ts`, client state in `{feature}Store.ts`, optional real-time in `signalr.ts`.
 - Nested subdomains use subfolders (`editor/`, `tree/`, `hooks/`); extensibility uses a `registry/` subfolder.
 
 ### Shared layer (`shared/`)
-- Single axios instance in `shared/api/http.ts` with auth interceptors; features never create their own clients.
+- Single HTTP client in `shared/api/http.ts`; features never create their own clients.
 - UI-facing domain types in `shared/types/`; raw wire types stay private inside feature `api.ts`.
 - Design-system primitives in `shared/ui/` as kebab-case files; no feature imports inside primitives.
 - Generic utilities in `shared/lib/`; generic hooks in `shared/hooks/`.

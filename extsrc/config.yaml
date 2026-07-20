@@ -1,6 +1,6 @@
 schema: 1
 
-version: "0.4.1"
+version: "1.0.0"
 
 hints:
   global:
@@ -8,6 +8,7 @@ hints:
     - "No emojis or exotic Unicode in code, logs, documentation, or messages; plain ASCII where practical."
     - "User-facing replies, documentation, and task descriptions: concise wording; minimal markdown (avoid decorative bold/italic); explain with lists and structure; short, clear sentences."
     - "If the user only asked a question, answer first; do not edit files unless changes are clearly needed."
+    - "Use Context7 MCP for library/API docs, setup, and config steps without being asked."
 
 folders:
   spec/extend:
@@ -16,7 +17,7 @@ folders:
 
 files:
   spec/extend/00-general.md:
-    description: "Docs/comments/logs policy, builds, change recap."
+    description: "Docs/comments/logs policy, builds, change recap, parameter wrapping."
     mode: static
     globalRead: required
     localRead: no
@@ -28,7 +29,7 @@ files:
     localRead: no
 
   spec/extend/02-csharp-solution-layout.md:
-    description: "Solution layout, project roles, optional registrars, registration signatures."
+    description: "Solution layout, project roles, tool modules, optional registrars."
     mode: static
     globalRead: auto
     localRead: no
@@ -39,16 +40,10 @@ files:
     globalRead: auto
     localRead: no
 
-  spec/extend/04-http-httclient.md:
-    description: "IHttpClientFactory and HttpClient usage."
+  spec/extend/04-http-client.md:
+    description: "IHttpClientFactory, HttpClient usage, structured error branching."
     mode: static
     globalRead: auto
-    localRead: no
-
-  spec/extend/05-tools-mcp.md:
-    description: "Context7 MCP."
-    mode: static
-    globalRead: required
     localRead: no
 
   spec/extend/06-abstractions-layer.md:
@@ -58,7 +53,7 @@ files:
     localRead: no
 
   spec/extend/07-di-registration.md:
-    description: "DI extensions, options, keyed services, lifetimes."
+    description: "DI extensions, options, keyed services, lifetimes (registration canon)."
     mode: static
     globalRead: auto
     localRead: no
@@ -70,7 +65,7 @@ files:
     localRead: no
 
   spec/extend/09-processors-workers-jobs.md:
-    description: "Processor, Worker, Jobs patterns."
+    description: "Processor, Worker, Jobs patterns; cancel and checkpoints."
     mode: static
     globalRead: auto
     localRead: no
@@ -104,6 +99,7 @@ files:
     mode: static
     globalRead: auto
     localRead: no
+
   spec/extend/15-domain-errors-localization.md:
     description: "Domain exception with UserMessageCode, parameters, 422 mapping."
     mode: static
@@ -115,7 +111,6 @@ files:
     mode: static
     globalRead: auto
     localRead: no
-
 
 skills:
   new-abstractions-project.md:

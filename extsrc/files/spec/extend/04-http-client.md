@@ -10,3 +10,6 @@ request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", config.A
 request.Content = JsonContent.Create(body);
 var response = await client.SendAsync(request, ct);
 ```
+
+### Error branching
+- For APIs with structured error payloads, compare known semantic error codes for expected branches; reserve exceptions for unexpected HTTP failures (small local `EnsureSuccessStatusCode` helper is fine).

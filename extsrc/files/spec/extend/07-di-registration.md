@@ -4,7 +4,7 @@
 - One static `{Feature}ServiceCollectionExtensions` in `Extensions/` per impl project.
 - Methods: `Add{Provider|Persistence|Worker}(...)`; return `IServiceCollection` for chaining.
 
-### Signatures and options
+### Signatures and options (canon)
 - Library `Add*`: `Add{Dependency}(this IServiceCollection services, IConfiguration configurationSection, ...)`.
 - Second argument is a pre-resolved section (`GetSection(...)`), not the configuration root.
 - Do not accept a separate `sectionName` / `configurationSectionName` string; the caller chooses and passes the section.
