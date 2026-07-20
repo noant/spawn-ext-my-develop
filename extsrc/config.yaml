@@ -1,6 +1,6 @@
 schema: 1
 
-version: "1.0.0"
+version: "1.1.0"
 
 hints:
   global:
@@ -23,7 +23,7 @@ files:
     localRead: no
 
   spec/extend/01-csharp-style.md:
-    description: "Fluent style, DI, immutability, naming, CPM, errors, async/cancellation."
+    description: "Fluent style, DI, immutability, naming, CPM/vuln audit, errors, async/cancellation."
     mode: static
     globalRead: auto
     localRead: no
@@ -53,7 +53,7 @@ files:
     localRead: no
 
   spec/extend/07-di-registration.md:
-    description: "DI extensions, options, keyed services, lifetimes (registration canon)."
+    description: "DI extensions, options, keyed services (DefaultKey, WithOptions), lifetimes."
     mode: static
     globalRead: auto
     localRead: no

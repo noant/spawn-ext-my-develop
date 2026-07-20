@@ -22,7 +22,12 @@
 - Prefer C# for automation and tooling; use PowerShell/Bash only when requested or required for platform integration.
 
 ### Central Package Management (CPM)
-- Always use CPM for C# projects.
+- Always use CPM for C# projects (`Directory.Packages.props`, versionless `PackageReference`).
+- Vulnerability audit: `dotnet list {Solution}.sln package --vulnerable --include-transitive` (high severity is the default gate).
+- Fix direct packages by bumping the matching `PackageVersion` in CPM.
+- Transitive high-severity packages: prefer bumping the top-level stack (e.g. EF Core, Npgsql EF provider) over pinning transitives, unless no patched upstream exists.
+- When raising EF Core / ASP.NET Core patch level, align `Microsoft.Extensions.*`, `Microsoft.AspNetCore.*`, and `System.Text.Json` / `System.Net.Http.Json` to the same patch band to avoid NU1605 downgrades.
+- After bumps (when verification is requested): restore, re-run the vulnerability list, then build.
 
 ### Error handling
 - Use exceptions for failures; avoid bool/null/error codes as primary signals.
