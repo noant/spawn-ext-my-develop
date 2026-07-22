@@ -2,6 +2,18 @@
 
 ### Fluent style
 - Prefer declarative/fluent code when clearer: LINQ, EF fluent API, builders, method chaining.
+- Long call chains: keep the receiver and first segment on the first line; put each following `.` member/call on its own indented line (leading dot). Short single-segment calls stay on one line.
+
+```csharp
+args.GetRequiredServiceProvider()
+    .GetRequiredService<IGitSessionsService>();
+
+items
+    .Where(x => x.Active)
+    .OrderBy(x => x.Name)
+    .ToList();
+```
+
 - Prefer LINQ over loops when readability wins.
 - Prefer local functions over private class methods when logic is used only inside one method and does not need reuse or isolated testing.
 - When a method uses local functions, place a `// Local functions` comment after the main flow and before local declarations.
