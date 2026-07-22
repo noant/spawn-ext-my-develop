@@ -1,6 +1,6 @@
 schema: 1
 
-version: "1.1.0"
+version: "1.1.1"
 
 hints:
   global:
@@ -25,7 +25,7 @@ files:
   spec/extend/01-csharp-style.md:
     description: "Fluent style, DI, immutability, naming, CPM/vuln audit, errors, async/cancellation."
     mode: static
-    globalRead: auto
+    globalRead: required
     localRead: no
 
   spec/extend/02-csharp-solution-layout.md:
