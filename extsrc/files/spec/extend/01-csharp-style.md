@@ -5,9 +5,6 @@
 - Long call chains: keep the receiver and first segment on the first line; put each following `.` member/call on its own indented line (leading dot). Short single-segment calls stay on one line.
 
 ```csharp
-args.GetRequiredServiceProvider()
-    .GetRequiredService<IGitSessionsService>();
-
 items
     .Where(x => x.Active)
     .OrderBy(x => x.Name)
@@ -18,6 +15,16 @@ items
 - Prefer local functions over private class methods when logic is used only inside one method and does not need reuse or isolated testing.
 - When a method uses local functions, place a `// Local functions` comment after the main flow and before local declarations.
 
+```csharp
+public int Run(int n)
+{
+    var x = Step(n);
+    // Local functions
+    int Step(int v) => v + 1;
+    return x;
+}
+```
+
 ### Dependency Injection
 - Prefer DI over `new` for app services; inject via primary constructors.
 - Prefer primary constructor syntax; avoid classic ctor + `private readonly` field boilerplate when a primary constructor is enough.
@@ -26,12 +33,37 @@ items
 - Multi-implementation: register variants and resolve via selector injected with `IEnumerable<T>`; prefer typed `IHandler<TCommand>` over reflection dispatch.
 - Use `GetRequiredService<T>()` in hosts; avoid `IServiceProvider.GetService` in domain logic.
 
+```csharp
+// Prefer
+public sealed class OrderService(IOrderStore store) : IOrderService
+{
+    public Task SaveAsync(OrderDto dto, CancellationToken cancellationToken = default)
+        => store.SaveAsync(new Order(dto), cancellationToken);
+}
+
+// Avoid — service via new; classic field boilerplate
+public class OrderService
+{
+    private readonly IOrderStore _store;
+    public OrderService(IOrderStore store) => _store = store;
+    public void Save(OrderDto dto) => new OrderStore().Save(new Order(dto));
+}
+```
+
 ### Naming
 - PascalCase for types and public members; `_camelCase` for private fields; camelCase for parameters and locals.
 - Async methods: `Async` suffix; last parameter `CancellationToken cancellationToken = default` (not `ct`).
 
+```csharp
+public Task LoadAsync(string id, CancellationToken cancellationToken = default);
+```
+
 ### Tooling language
 - Prefer C# for automation and tooling; use PowerShell/Bash only when requested or required for platform integration.
+
+```text
+dotnet run --project tools/MigrateDb
+```
 
 ### Central Package Management (CPM)
 - Always use CPM for C# projects (`Directory.Packages.props`, versionless `PackageReference`).
@@ -41,6 +73,13 @@ items
 - When raising EF Core / ASP.NET Core patch level, align `Microsoft.Extensions.*`, `Microsoft.AspNetCore.*`, and `System.Text.Json` / `System.Net.Http.Json` to the same patch band to avoid NU1605 downgrades.
 - After bumps (when verification is requested): restore, re-run the vulnerability list, then build.
 
+```xml
+<!-- Directory.Packages.props -->
+<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+<!-- csproj -->
+<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+```
+
 ### Error handling
 - Use exceptions for failures; avoid bool/null/error codes as primary signals.
 - No empty or overly broad `try`/`catch` — let exceptions propagate. Add `TryXxx`/`Result` only when asked.
@@ -49,9 +88,26 @@ items
 - Non-critical paths (local cache, remote config fallbacks): catch, log, return null or default — do not fail the primary flow.
 - Corrupted local resume metadata: log, delete the broken artifact, continue.
 
+```csharp
+// Prefer
+catch (HttpRequestException ex)
+{
+    throw new AppException($"GET {url} failed", ex);
+}
+
+// Avoid — swallow / lose stack
+catch (Exception) { return false; }
+catch (Exception ex) { throw ex; }
+```
+
 ### Immutability
 - Prefer `record` for settings, parameters, and DTOs crossing assembly boundaries.
 - Return `IReadOnlyCollection<T>` from public queries; use mutable classes only when in-place mutation or deserialization requires it.
+
+```csharp
+public sealed record UserDto(string Id, string Name);
+public IReadOnlyCollection<UserDto> List();
+```
 
 ### Async and cancellation
 - Prefer async I/O; last parameter: `CancellationToken cancellationToken = default`.
@@ -60,3 +116,13 @@ items
 - Exclude `OperationCanceledException` from retry policies.
 - Parallel branches that need scoped services: `CreateAsyncScope()` inside each branch; do not share scoped instances across concurrent tasks.
 - Worker/scheduler cancel and checkpoint rules: see `09-processors-workers-jobs.md`.
+
+```csharp
+// Prefer
+public async Task SaveAsync(Order order, CancellationToken cancellationToken = default)
+    => await _store.SaveAsync(order, cancellationToken);
+
+// Avoid — drop token / share scoped service across parallel work
+await _store.SaveAsync(order);
+await Parallel.ForEachAsync(ids, async (id, _) => await _scoped.HandleAsync(id));
+```
