@@ -1,5 +1,36 @@
 # C# / .NET — style and practices
 
+### Method arguments
+- 1-3 arguments: keep on one line.
+- More than 3: each argument on its own indented line (including the first one).
+- Applies to declarations and calls.
+- Lambda parameters: stay on one line regardless of count.
+
+```csharp
+// 1-3 — one line
+Foo(a, b, c);
+public Task<Order> GetByIdAsync(string id, CancellationToken ct = default);
+
+// More than 3 — each on own line
+Foo(
+    a,
+    b,
+    c,
+    d);
+public Task<Order> GetFilteredAsync(
+    string status,
+    DateTime from,
+    DateTime to,
+    int page,
+    int pageSize,
+    CancellationToken ct = default);
+
+// Lambda — stays compact
+items.Select((x, i) => (x, i));
+```
+
+### Fluent style
+
 ### Fluent style
 - Prefer declarative/fluent code when clearer: LINQ, EF fluent API, builders, method chaining.
 - Long call chains: keep the receiver and first segment on the first line; put each following `.` member/call on its own indented line (leading dot). Short single-segment calls stay on one line.

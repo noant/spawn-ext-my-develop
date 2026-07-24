@@ -1,5 +1,37 @@
 # Frontend — solution layout
 
+### Function arguments
+- 1-3 arguments: keep on one line.
+- More than 3: each argument on its own indented line (including the first one).
+- Applies to declarations and calls (functions, methods, constructors, React components).
+- Arrow function parameters: stay on one line regardless of count.
+
+```tsx
+// 1-3 — one line
+Foo(a, b, c);
+function getById(id: string, ct?: AbortSignal) {}
+const MyComp = ({ name, age }: Props) => <div />;
+
+// More than 3 — each on own line
+Foo(
+    a,
+    b,
+    c,
+    d);
+function getFiltered(
+    status: string,
+    from: Date,
+    to: Date,
+    page: number,
+    pageSize: number,
+    signal?: AbortSignal) {}
+
+// Arrow — stays compact
+items.map((x, i) => x + i);
+```
+
+### Project structure
+
 ### Project structure
 - Single-package SPA: `{Product}.Frontend.WebApp.{Version}` at repo root with `src/`, `public/`, configs at root.
 - Split `src/` into `app/` (shell), `features/` (vertical slices), `shared/` (infrastructure).
