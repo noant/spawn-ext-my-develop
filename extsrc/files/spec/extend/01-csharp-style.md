@@ -30,16 +30,42 @@ items.Select((x, i) => (x, i));
 ```
 
 ### Fluent style
-
-### Fluent style
-- Prefer declarative/fluent code when clearer: LINQ, EF fluent API, builders, method chaining.
+- Prefer declarative/fluent code when clearer: LINQ, EF fluent API, builders, method chaining, options/config setup.
 - Long call chains: keep the receiver and first segment on the first line; put each following `.` member/call on its own indented line (leading dot). Short single-segment calls stay on one line.
 
 ```csharp
+// LINQ
 items
     .Where(x => x.Active)
     .OrderBy(x => x.Name)
     .ToList();
+
+// EF Core query
+dbContext.Orders
+    .Include(o => o.Items)
+    .Where(o => o.Status == OrderStatus.Active)
+    .ToListAsync(ct);
+
+// Builder
+new OrderBuilder()
+    .WithCustomer(customerId)
+    .WithItems(items)
+    .WithDelivery(address, date)
+    .Build();
+
+// String / options configuration
+new StringBuilder()
+    .Append("Hello")
+    .AppendLine(", World!")
+    .Replace("World", "Fluent");
+
+"users/{id}/orders"
+    .Replace("{id}", userId.ToString())
+    .ToLowerInvariant();
+
+services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options => { /* ... */ });
 ```
 
 - Prefer LINQ over loops when readability wins.
