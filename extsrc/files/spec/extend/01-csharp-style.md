@@ -1,44 +1,8 @@
-### Method arguments
-
-- When a method, constructor, or record has **3 or fewer parameters**, keep them on one line (or break naturally if the line exceeds the column limit).
-- When a method, constructor, or record has **more than 3 parameters**, place **every parameter on its own indented line**, including the first one.
-- The opening parenthesis stays on the same line as the method/type name; the closing parenthesis goes on its own line at the same indent level as the declaration.
-- This rule applies to: method declarations, method calls, constructor calls, primary constructors, record declarations, and attribute constructors.
-- Exception: lambda parameters and inline delegate signatures may stay on one line regardless of count.
-
-```csharp
-// 3 or fewer — one line
-public Task<Order> GetByIdAsync(string id, CancellationToken ct = default);
-_ = new OrderDto("id", "name", 100m);
-
-// More than 3 — each on its own line
-public Task<Order> GetFilteredAsync(
-    string status,
-    DateTime from,
-    DateTime to,
-    int page,
-    int pageSize,
-    CancellationToken ct = default);
-
-var result = await _service.GetFilteredAsync(
-    status,
-    from,
-    to,
-    page,
-    pageSize,
-    ct);
-
-public sealed record PagedResult<T>(
-    IReadOnlyCollection<T> Items,
-    int TotalCount,
-    int Page,
-    int PageSize);
-
-// Exception — lambda stays compact
-items.Select((x, i) => (x, i));
-```
+# C# / .NET — style and practices
 
 ### Fluent style
+- Prefer declarative/fluent code when clearer: LINQ, EF fluent API, builders, method chaining.
+- Long call chains: keep the receiver and first segment on the first line; put each following `.` member/call on its own indented line (leading dot). Short single-segment calls stay on one line.
 
 ```csharp
 items
