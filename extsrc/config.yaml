@@ -1,6 +1,6 @@
 schema: 1
 
-version: "1.1.4"
+version: "1.1.5"
 
 hints:
   global:
@@ -17,7 +17,7 @@ folders:
 
 files:
   spec/extend/00-general.md:
-    description: "Docs/comments/logs policy, builds, change recap, parameter wrapping."
+    description: "Docs/comments/logs policy, builds, change recap."
     mode: static
     globalRead: required
     localRead: no
