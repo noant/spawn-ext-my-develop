@@ -14,10 +14,11 @@ Goal: ship only packs that pass strict validation and install cleanly.
 6. **Version:** If this session changed **`config.yaml`**, skills, **`extsrc/files/`** layout, or **`extsrc/mcp/*.json`** in a user-visible way, **prompt** the author to bump **`version`** with **`spawn-ext-increment-version`** before tagging or releasing — unless they confirm it was docs-only typos with no behavioral impact.
 
 
+Before this skill, if the Spawn block instructions from `AGENTS.md` are not in context, read `AGENTS.md` first.
+
 Mandatory reads:
 - `spawn-ext-guide/ai/core.md` - Machine baseline — terms, extsrc tree rules, static vs artifact, name and uniqueness, install outputs.
 - `spawn-ext-guide/ai/cli.md` - Machine CLI reference — spawn init/extension/build commands, extensions.yaml bundle shape, authoring checklist.
-- `spawn/navigation.yaml` - Merged Spawn navigation (read-required, read-contextual).
 
 Contextual reads:
 - `spawn-ext-guide/ai/config-yaml.md` - Machine schema for config.yaml — keys, files/folders/skills modes, reads, ignores, setup, annotated example.

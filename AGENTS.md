@@ -1,6 +1,7 @@
 <!-- spawn:start -->
-Before working, read `spawn/navigation.yaml`.
-Read every file listed under `read-required`.
-Inspect `read-contextual` descriptions and read only files relevant to the current task.
+Read every file listed under `Mandatory reads`.
+Inspect `Contextual reads` descriptions and read only files relevant to the current task.
+
+Mandatory reads:
 
 <!-- spawn:end -->

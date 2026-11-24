@@ -14,10 +14,11 @@ Goal: start a new Spawn extension (methodology pack) from zero or from an existi
 6. **Later:** whenever packaging meaningfully evolves after bootstrap, **prompt** a **`version`** bump using **`spawn-ext-increment-version`** before publishing (initial `0.1.0` or `1.0.0` is typical until first stable story).
 
 
+Before this skill, if the Spawn block instructions from `AGENTS.md` are not in context, read `AGENTS.md` first.
+
 Mandatory reads:
 - `spawn-ext-guide/ai/core.md` - Machine baseline — terms, extsrc tree rules, static vs artifact, name and uniqueness, install outputs.
 - `spawn-ext-guide/ai/cli.md` - Machine CLI reference — spawn init/extension/build commands, extensions.yaml bundle shape, authoring checklist.
-- `spawn/navigation.yaml` - Merged Spawn navigation (read-required, read-contextual).
 
 Contextual reads:
 - `spawn-ext-guide/ai/config-yaml.md` - Machine schema for config.yaml — keys, files/folders/skills modes, reads, ignores, setup, annotated example.
