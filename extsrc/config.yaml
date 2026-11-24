@@ -1,6 +1,6 @@
 schema: 1
 
-version: "1.1.6"
+version: "1.2.0"
 
 hints:
   global:
@@ -112,7 +112,17 @@ files:
     globalRead: auto
     localRead: no
 
+  spec/extend/17-ui-design.md:
+    description: "Distinctive, intentional UI design: aesthetic direction, typography, accessibility, design tokens, avoiding templated AI defaults."
+    mode: static
+    globalRead: auto
+    localRead: no
+
 skills:
+  commit-push.md:
+    name: commit-push
+    description: "Commit and push changes in a git session repo - stage all, concise conventional message, push to origin."
+
   new-abstractions-project.md:
     name: new-abstractions-project
     description: "Scaffold Abstractions project."
