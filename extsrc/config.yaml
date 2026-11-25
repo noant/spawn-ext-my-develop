@@ -2,7 +2,7 @@ schema: 1
 
 name: my-develop
 
-version: "2.1.0"
+version: "2.1.1"
 
 hints:
   global:
@@ -13,6 +13,7 @@ hints:
     - "Do not write comments, log messages, or in-code text unless requested or required by the process."
     - "If the user only asked a question, answer first; do not edit files unless changes are clearly needed."
     - "For external info use available tools: Context7 (resolve-library-id -> query-docs) for library/API docs, search / fetchWebContent / fetchGithubReadme for web info."
+    - "Prefer Python scripts for tooling and automation."
     - "After code edits and task completion: build the project, run syntax checks if applicable, run tests when present; then summarize briefly what changed and where."
 
 folders:
