@@ -1,40 +1,30 @@
 # spawn-ext-my-develop
 
-Spawn extension with personal development methodology: global agent rules, C#/.NET + React/Vite conventions, and feature-scaffolding skills.
+Personal development methodology pack for [Spawn](https://github.com/noant/spawn): agent rules, C#/.NET + React/Vite conventions, and feature-scaffolding skills for the AI-assisted workflow.
+
+## What you get
+
+- Global agent rules: concise structured replies and docs, definitions for key terms inline, build + syntax checks + tests after code edits.
+- Backend conventions: C# fluent style, DI, EF Core, WebApi minimal endpoints, processors/workers/jobs, domain errors.
+- Frontend conventions: SPA layout, React Query + Zustand, forms and i18n, domain error handling, UI design quality bar.
+- Skills:
+  - `commit-push` — commit and push changes in a git session repo.
+  - `feature-fullstack` — scaffold a full-stack feature end to end.
+  - `feature-backend` — backend half: abstractions, implementation, DI, endpoints.
+  - `feature-frontend` — frontend half: page, API layer, state, i18n.
+
+Skills mark the relevant conventions as mandatory reads, so the agent applies them automatically.
 
 ## Install
 
+In the target repository root:
+
 ```
-spawn extension add <repo-url>
+spawn extension add https://github.com/noant/spawn-ext-my-develop.git
 ```
 
-Installs into `spawn/.extend/my-develop/` of the target repo; files materialize under `spec/`.
+After install, conventions land under `spec/extend/` and skills appear in the IDE; updates via `spawn extension update`.
 
-## Contents
+## Requirements
 
-- `extsrc/config.yaml` — extension manifest: global hints, files, skills, ignores.
-- `extsrc/files/spec/extend/` — conventions:
-  - C# style, solution layout, EF Core, HttpClient, abstractions, DI, WebApi, processors/workers/jobs, implementation projects
-  - Frontend: solution layout, data/state/routing, UI/forms/i18n, tooling, domain errors (backend + frontend), UI design
-- `extsrc/skills/`:
-  - `commit-push` — commit and push in a git session repo
-  - `feature-fullstack` — scaffold a full-stack feature (backend + frontend)
-  - `feature-backend` — abstractions, implementation, DI, endpoints
-  - `feature-frontend` — page, API layer, state, i18n
-  - Skills carry `required-read` rule sets; the agent reads them as mandatory context.
-
-## Conventions
-
-- Chat in Russian; specs, comments, logs in English; ASCII where practical.
-- Concise replies/docs; lists over paragraphs; short definitions inline.
-- Build, syntax checks, and tests after code edits and task completion.
-
-## Versioning
-
-Semantic versioning in `extsrc/config.yaml`; bump before publishing (MAJOR on removed/renamed surfaces).
-
-## Development
-
-1. Edit `extsrc/` (config, files, skills).
-2. Validate: `spawn extension check . --strict`.
-3. Bump version, commit, push.
+- Spawn CLI installed and `spawn init` done in the target repo.

@@ -2,19 +2,18 @@ schema: 1
 
 name: my-develop
 
-version: "2.0.0"
+version: "2.1.0"
 
 hints:
   global:
-    - "Chat: Russian. Specs, comments, logs, strings in code: English. ASCII in code/logs/docs when practical."
+    - "Language preferences (chat, specs, comments, logs): if not set in context, ask the user and record them in an appropriate rule under spawn/rules."
     - "No emojis or exotic Unicode in code, logs, documentation, or messages; plain ASCII where practical. Allowed only: ⚠️, 🔴🟠🟢🔵🟣🟡, ✅❌; everything else is forbidden."
     - "User-facing replies, specs, documentation, and comments: concise wording; do not omit important points; minimal markdown (avoid decorative bold/italic); short, clear sentences; prefer lists and structured layout over long paragraphs; for selected terms, give a short definition inline right where the term first appears."
     - "Do not create or update docs (README, USAGE, etc.) unless requested or required by the process."
     - "Do not write comments, log messages, or in-code text unless requested or required by the process."
     - "If the user only asked a question, answer first; do not edit files unless changes are clearly needed."
     - "For external info use available tools: Context7 (resolve-library-id -> query-docs) for library/API docs, search / fetchWebContent / fetchGithubReadme for web info."
-    - "After code changes, summarize briefly what changed and where."
-    - "After code edits and task completion: build the project, run syntax checks if applicable, and run tests when present."
+    - "After code edits and task completion: build the project, run syntax checks if applicable, run tests when present; then summarize briefly what changed and where."
 
 folders:
   spec/extend:
