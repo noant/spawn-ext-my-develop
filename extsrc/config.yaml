@@ -2,15 +2,19 @@ schema: 1
 
 name: my-develop
 
-version: "1.2.1"
+version: "2.0.0"
 
 hints:
   global:
     - "Chat: Russian. Specs, comments, logs, strings in code: English. ASCII in code/logs/docs when practical."
-    - "No emojis or exotic Unicode in code, logs, documentation, or messages; plain ASCII where practical."
-    - "User-facing replies, documentation, and task descriptions: concise wording; minimal markdown (avoid decorative bold/italic); explain with lists and structure; short, clear sentences."
+    - "No emojis or exotic Unicode in code, logs, documentation, or messages; plain ASCII where practical. Allowed only: ⚠️, 🔴🟠🟢🔵🟣🟡, ✅❌; everything else is forbidden."
+    - "User-facing replies, specs, documentation, and comments: concise wording; do not omit important points; minimal markdown (avoid decorative bold/italic); short, clear sentences; prefer lists and structured layout over long paragraphs; for selected terms, give a short definition inline right where the term first appears."
+    - "Do not create or update docs (README, USAGE, etc.) unless requested or required by the process."
+    - "Do not write comments, log messages, or in-code text unless requested or required by the process."
     - "If the user only asked a question, answer first; do not edit files unless changes are clearly needed."
-    - "Use Context7 MCP for library/API docs, setup, and config steps without being asked."
+    - "For external info use available tools: Context7 (resolve-library-id -> query-docs) for library/API docs, search / fetchWebContent / fetchGithubReadme for web info."
+    - "After code changes, summarize briefly what changed and where."
+    - "After code edits and task completion: build the project, run syntax checks if applicable, and run tests when present."
 
 folders:
   spec/extend:
@@ -18,12 +22,6 @@ folders:
     mode: static
 
 files:
-  spec/extend/00-general.md:
-    description: "Docs/comments/logs policy, builds, change recap."
-    mode: static
-    globalRead: required
-    localRead: no
-
   spec/extend/01-csharp-style.md:
     description: "Fluent style, DI, immutability, naming, CPM/vuln audit, errors, async/cancellation."
     mode: static
@@ -125,55 +123,40 @@ skills:
     name: commit-push
     description: "Commit and push changes in a git session repo - stage all, concise conventional message, push to origin."
 
-  new-abstractions-project.md:
-    name: new-abstractions-project
-    description: "Scaffold Abstractions project."
+  feature-fullstack.md:
+    name: feature-fullstack
+    description: "Scaffold a full-stack feature (backend + frontend)."
     required-read:
       - spec/extend/02-csharp-solution-layout.md
       - spec/extend/06-abstractions-layer.md
-
-  new-service-registration.md:
-    name: new-service-registration
-    description: "Add DI extension with options and keyed services."
-    required-read:
       - spec/extend/07-di-registration.md
-      - spec/extend/10-implementation-projects.md
-
-  new-postgres-persistence.md:
-    name: new-postgres-persistence
-    description: "Add EF PostgreSQL module with auto-migrations."
-    required-read:
-      - spec/extend/03-entity-framework-core.md
-      - spec/extend/07-di-registration.md
-
-  new-webapi-endpoints.md:
-    name: new-webapi-endpoints
-    description: "Add Minimal API endpoint group."
-    required-read:
       - spec/extend/08-webapi-minimal.md
-
-  new-processor-or-worker.md:
-    name: new-processor-or-worker
-    description: "Add Processor, Worker, or Job handler."
-    required-read:
-      - spec/extend/09-processors-workers-jobs.md
-      - spec/extend/07-di-registration.md
-
-  new-implementation-project.md:
-    name: new-implementation-project
-    description: "Scaffold technology-specific implementation."
-    required-read:
       - spec/extend/10-implementation-projects.md
+      - spec/extend/11-frontend-solution-layout.md
+      - spec/extend/12-frontend-data-state-routing.md
+      - spec/extend/13-frontend-ui-forms-i18n.md
+      - spec/extend/16-frontend-domain-errors.md
+
+  feature-backend.md:
+    name: feature-backend
+    description: "Scaffold a backend feature - abstractions, implementation, DI, endpoints."
+    required-read:
+      - spec/extend/02-csharp-solution-layout.md
+      - spec/extend/03-entity-framework-core.md
       - spec/extend/06-abstractions-layer.md
       - spec/extend/07-di-registration.md
+      - spec/extend/08-webapi-minimal.md
+      - spec/extend/09-processors-workers-jobs.md
+      - spec/extend/10-implementation-projects.md
 
-  new-frontend-feature.md:
-    name: new-frontend-feature
-    description: "Scaffold frontend feature slice with API, store, and page."
+  feature-frontend.md:
+    name: feature-frontend
+    description: "Scaffold a frontend feature slice - page, API, store, i18n."
     required-read:
       - spec/extend/11-frontend-solution-layout.md
       - spec/extend/12-frontend-data-state-routing.md
       - spec/extend/13-frontend-ui-forms-i18n.md
+      - spec/extend/16-frontend-domain-errors.md
 
 setup: {}
 
